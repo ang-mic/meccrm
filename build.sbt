@@ -1,5 +1,5 @@
   // Project related information
-  organization := "org.angmic"
+  organization := "io.meccrm"
   version := "0.0.1"
   name := "meccrm"
 
@@ -7,7 +7,7 @@
   ivyScala := ivyScala.value map {
     _.copy(overrideScalaVersion = true)
   }                                     // Forces the Scala version
-  scalaVersion := "2.12.0"
+  scalaVersion := "2.12.2"
   scalacOptions := Seq(
     "-unchecked",
     "-deprecation",
@@ -23,7 +23,7 @@
   libraryDependencies ++= {
     // val akkaVersion = "2.4.9"
     Seq(
-      "org.scalatest" % "scalatest_2.12" % "3.0.0" % "test",
-      "com.typesafe" % "config" % "1.3.0"
+      "org.scalatest" %% "scalatest" % "3.0.3" % "test",
+      "com.typesafe" % "config" % "1.3.1"
     )
   } 
