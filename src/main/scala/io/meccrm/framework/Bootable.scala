@@ -3,10 +3,7 @@ package io.meccrm.framework
 
 trait Bootable {
 
-  val config: Config
-  val server: Server
+  def boot(): Unit
 
-  protected def boot(): Unit
-
-  protected def halt(): Unit
+  def halt(): Unit
 }
