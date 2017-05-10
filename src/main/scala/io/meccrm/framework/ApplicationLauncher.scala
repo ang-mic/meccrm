@@ -1,8 +1,9 @@
 package io.meccrm.framework
 
-class ApplicationLauncher[T <: Bootable: Manifest] extends App {
-  val manifest = implicitly[Manifest[T]]
-  val bootable = manifest.runtimeClass.newInstance.asInstanceOf[T]
+import scala.reflect.ClassTag
+
+class ApplicationLauncher[T <: Bootable: ClassTag] extends App {
+  val bootable = implicitly[ClassTag[T]].runtimeClass.newInstance.asInstanceOf[T]
   sys.ShutdownHookThread(bootable.halt())
   bootable.boot()
 }
