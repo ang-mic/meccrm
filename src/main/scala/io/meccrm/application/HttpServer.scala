@@ -1,6 +1,8 @@
-package io.meccrm.framework.application
+package io.meccrm.application
 
 import io.meccrm.framework.Server
+
+object HttpServer extends HttpServer
 
 trait HttpServer extends Server {
   override def start(): Unit = {
