@@ -5,6 +5,6 @@ import io.meccrm.application.http.ServerComponent
 
 // FIXME: I don't like the CAKE patter for DI
 trait ComponentRegistry extends ServerComponent with ConfigComponent {
-  val config: AppConfig = AppConfig
-  val server: HttpServer = HttpServer
+  override val config: AppConfig = AppConfig
+  override val server: HttpServer = HttpServer
 }

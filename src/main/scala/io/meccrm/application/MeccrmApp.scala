@@ -18,7 +18,7 @@ object MeccrmApp extends MeccrmBootable with ComponentRegistry with App {
   * DI with parameters it is not ideal. Find out what is more convenient for testing
   * Also it doesn't work directly with the `ApplicationLauncher`
   */
-trait MeccrmBootable extends Bootable {
+class MeccrmBootable extends Bootable {
   this: ServerComponent with ConfigComponent =>
 
   override def boot(): Unit = {

@@ -9,7 +9,7 @@ trait ServerComponent {
 
   object HttpServer extends HttpServer
 
-  trait HttpServer extends Server {
+  class HttpServer extends Server {
 
     //TODO: ip and port is need
     //TODO: Maybe `bind` is a better name
