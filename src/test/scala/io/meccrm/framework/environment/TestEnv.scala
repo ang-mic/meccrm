@@ -9,7 +9,7 @@ trait TestEnv extends ServerComponent with ConfigComponent {
 
   override val config: AppConfig = new AppConfig with AppFixture {
     override val host = "test-host"
-    override val ip   = getAvailablePort
+    override val port   = getAvailablePort
   }
 
   override val server: HttpServer = new HttpServer

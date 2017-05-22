@@ -5,11 +5,7 @@ import org.scalatest.FlatSpec
 
 class BootableSpec extends FlatSpec {
 
-  "A `Bootable`" should "return `Sig(0)` when `boot` is successful" in new AppFixture {
-    withApp {
-      println("TEST :D 1")
-    }
-  }
+  "A `Bootable`" should "return `Sig(0)` when `boot` is successful" in new AppFixture {}
 
   it should "return `Sig(0)` when `halt` gracefully" in new AppFixture {}
 }

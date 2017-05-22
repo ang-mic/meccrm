@@ -24,6 +24,7 @@
     // val akkaVersion = "2.4.9"
     Seq(
       "org.scalatest" %% "scalatest" % "3.0.3" % "test",
-      "com.typesafe" % "config" % "1.3.1"
+      "com.typesafe" % "config" % "1.3.1",
+      "com.typesafe.akka" %% "akka-http" % "10.0.6"
     )
   }
