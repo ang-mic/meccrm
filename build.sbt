@@ -13,7 +13,6 @@
     "-deprecation",
     "-encoding",
     "utf8")
-
   //Packaging and excecution instractions
   enablePlugins(JavaAppPackaging)                             // Enables packaging  and spesifies the type of the package
   mainClass in Universal := Some("com.example.package.Class") // Specifies the class with the 'main' methods
