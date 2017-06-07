@@ -1,0 +1,8 @@
+//TESTING
+ 1. There should be `Unit` test as well as `Functional` test
+    1.1 `Functional` tests
+        1.1.1 they will be powered by the `TestEnv` trait
+        1.1.2 each one of them will test and describe an `application` feature or a framework `functionality`
+    1.2 `Unit` tests
+        1.2.1 must be limited to the scope they describe and use `mocks`
+        1.2.2 should test just a small set of methods

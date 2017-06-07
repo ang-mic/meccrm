@@ -9,6 +9,7 @@ trait AppFixture {
 
   /**
     * Runs an instance of MeccrmBootable with TestEnv
+    * TODO: try - finally block
     */
   def withApp[A](block: => A) = {
     val app = new MeccrmBootable with TestEnv
@@ -23,7 +24,6 @@ trait AppFixture {
       val port   = socket.getLocalPort
       socket.setReuseAddress(true)
       socket.close()
-
       port
   }
 

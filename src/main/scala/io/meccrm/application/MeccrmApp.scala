@@ -22,7 +22,7 @@ object MeccrmApp extends MeccrmBootable with ComponentRegistry with App {
 class MeccrmBootable extends Bootable {
   this: ServerComponent with ConfigComponent =>
 
-  implicit val system = ActorSystem("my-system")
+  implicit val system       = ActorSystem("my-system")
   implicit val materializer = ActorMaterializer()
 
   override def boot(): Unit = {
