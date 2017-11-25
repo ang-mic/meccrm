@@ -6,3 +6,7 @@
     1.2 `Unit` tests
         1.2.1 must be limited to the scope they describe and use `mocks`
         1.2.2 should test just a small set of methods
+
+ //DATABASE
+ 1. Create a SQL database for customer/clients data
+ 2. Integrate Flyway with the app
