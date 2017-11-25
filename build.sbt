@@ -1,4 +1,4 @@
-  // Project related information
+// Project related information
   organization := "io.meccrm"
   version := "0.0.1"
   name := "meccrm"
