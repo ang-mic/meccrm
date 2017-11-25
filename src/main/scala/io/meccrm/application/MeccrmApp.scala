@@ -2,24 +2,20 @@ package io.meccrm.application
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
+import com.typesafe.scalalogging.LazyLogging
 import io.meccrm.application.config.ConfigComponent
 import io.meccrm.application.http.ServerComponent
 import io.meccrm.framework.Bootable
 
-/**
-  * [[io.meccrm.framework.ApplicationLauncher ApplicationLauncher]] doesn't work out of the box with
-  * CAKE pattern
-  */
+import scala.concurrent.ExecutionContext.Implicits.global
+
 object MeccrmApp extends MeccrmBootable with ComponentRegistry with App {
   sys.ShutdownHookThread(halt())
   boot()
 }
 
-/**
-  * DI with parameters it is not ideal. Find out what is more convenient for testing
-  * Also it doesn't work directly with the `ApplicationLauncher`
-  */
-class MeccrmBootable extends Bootable {
+
+class MeccrmBootable extends Bootable with LazyLogging{
   this: ServerComponent with ConfigComponent =>
 
   implicit val system       = ActorSystem("my-system")
