@@ -22,13 +22,13 @@ class MeccrmBootable extends Bootable with LazyLogging{
   implicit val materializer = ActorMaterializer()
 
   override def boot(): Unit = {
+    logger.info("Booting")
     server.start(config.host, config.port)
-    println("Booted")
   }
 
   override def halt(): Unit = {
     server.stop()
-    println("Halted")
+    logger.info("Halted")
   }
 
 }
