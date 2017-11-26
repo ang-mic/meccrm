@@ -6,6 +6,7 @@ import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
 import io.meccrm.framework.Server
+import scala.concurrent.ExecutionContext
 
 import scala.io.StdIn
 
@@ -13,14 +14,17 @@ trait ServerComponent {
 
   val server: Server
 
+  implicit val system       = ActorSystem("my-system")
+  implicit val materializer = ActorMaterializer()
+  implicit val ec           = scala.concurrent.ExecutionContext.Implicits.global
+
   object HttpServer extends HttpServer
 
-  class HttpServer extends Server {
-    import scala.concurrent.ExecutionContext.Implicits.global
+  class HttpServer(implicit ec: ExecutionContext, system: ActorSystem, materializer: ActorMaterializer) extends Server {
 
     //TODO: ip and port is need
     //TODO: Maybe `bind` is a better name
-    override def start(host: String, port: Int)(implicit system: ActorSystem, materializer: ActorMaterializer): Unit = {
+    override def start(host: String, port: Int): Unit = {
       val route =
         path("hello") {
           get {
