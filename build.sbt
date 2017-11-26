@@ -4,7 +4,7 @@
   name := "meccrm"
 
   // Scala related information
-  ivyScala := ivyScala.value map(_.copy(overrideScalaVersion = true))
+//  ivyScala := ivyScala.value map(_.copy(overrideScalaVersion = true))
   scalaVersion := "2.12.4"
   scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
