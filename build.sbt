@@ -3,7 +3,6 @@
   version := "0.0.1"
   name := "meccrm"
 
-  logLevel := Level.Info
   // Scala related information
   //  ivyScala := ivyScala.value map(_.copy(overrideScalaVersion = true))
   scalaVersion := "2.12.4"

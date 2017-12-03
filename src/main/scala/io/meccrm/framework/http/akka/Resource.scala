@@ -4,7 +4,7 @@ import akka.http.scaladsl.server.{Directives, Route}
 
 abstract class Resource[T: ClassTag] extends Directives {
 
-  protected lazy val resourceName = classTag[T].runtimeClass.getSimpleName.toLowerCase.replace("resource", "")
+  protected val resourceName: String
 
   protected def routes: Route = createResource ~ readResource ~ updateResource ~ deleteResource
 
