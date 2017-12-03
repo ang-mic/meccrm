@@ -5,7 +5,7 @@ import akka.http.scaladsl.server.Route
 
 trait CustomerResource extends Resource[Customer] {
 
-  override val resourceName = "customers"
+  override val name = "customers"
 
-  def customerRoutes: Route  =  routes
+  def customerRoutes: Route = routes
 }

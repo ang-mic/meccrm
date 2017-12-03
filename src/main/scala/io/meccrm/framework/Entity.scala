@@ -1,5 +1,5 @@
 package io.meccrm.framework
 
 trait Entity {
-//  val id
+  protected val id: Option[Int] //NOTE: Temp type
 }
