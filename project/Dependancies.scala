@@ -9,7 +9,10 @@ object Dependencies {
   lazy val service = http ++ db ++ utils ++ test
 
   val http = Seq(
-      "com.typesafe.akka"   %% "akka-http"          % akkaHttpV
+    "com.typesafe.akka"   %% "akka-http"             % akkaHttpV,
+    "org.json4s"          %% "json4s-jackson"        % "3.5.3",
+    "de.heikoseeberger"   %  "akka-http-json4s_2.12" % "1.18.1"
+//    "org.json4s"           %% "json4s-ext"      % json4sV
   )
 
   val db = Seq(

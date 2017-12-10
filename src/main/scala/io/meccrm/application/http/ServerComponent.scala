@@ -16,7 +16,6 @@ import scala.io.StdIn
 
 trait ServerComponent {
 
-
   val server: Server
 
   implicit val system       = ActorSystem("my-system")
