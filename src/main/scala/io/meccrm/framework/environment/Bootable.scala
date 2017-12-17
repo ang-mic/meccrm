@@ -1,4 +1,4 @@
-package io.meccrm.framework
+package io.meccrm.framework.environment
 
 trait Bootable {
   def boot(): Unit

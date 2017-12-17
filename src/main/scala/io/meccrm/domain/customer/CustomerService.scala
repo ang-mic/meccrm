@@ -1,6 +1,7 @@
 package io.meccrm.domain.customer
 
-import io.meccrm.framework.RestService
+import io.meccrm.framework.http.akka.RestService
+
 
 class CustomerService extends RestService[Customer] {
   override def getAll: Seq[Customer] = Seq(Customer(None, "ang", "mic", "co"))

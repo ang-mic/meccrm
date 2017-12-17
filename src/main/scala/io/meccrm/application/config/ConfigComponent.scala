@@ -2,7 +2,6 @@ package io.meccrm.application.config
 
 import io.meccrm.framework.Config
 
-
 trait ConfigComponent {
 
   val config: AppConfig

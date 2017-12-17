@@ -1,24 +1,14 @@
 package io.meccrm.domain.customer
 
-import io.meccrm.framework.http.akka.Resource
-import akka.http.scaladsl.server.Route
-import io.meccrm.framework.RestService
+import io.meccrm.framework.http.akka.{Resource, RestService}
 
-trait CustomerResource extends Resource[Customer] {
-
-  override protected val name = "customers"
-
-  override protected val service = ???
-
-  def customerRoutes: Route = routes
+object CustomerResource {
+  def apply(customerService: RestService[Customer]): CustomerResource = new CustomerResource(customerService)
 }
 
-class CustomerRes(customerService: RestService[Customer]) extends Resource[Customer] {
+final class CustomerResource(customerService: RestService[Customer]) extends Resource[Customer] {
 
   override protected val name = "customers"
 
-  //FIXME: Find a way to inject that
   override protected val service = customerService
-
-  def customerRoutes: Route = routes
 }

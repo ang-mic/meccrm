@@ -1,25 +1,27 @@
 package io.meccrm.framework.http.akka
 
-import akka.http.scaladsl.server.{Directives, Route}
+import akka.http.scaladsl.server.Directives._
+import akka.http.scaladsl.server.Route
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport
-import io.meccrm.framework.{Entity, RestService}
+import io.meccrm.framework.Entity
 import org.json4s._
 
 //TODO: Make sure that the naming makes sense and uses the right conventions
 //TODO: Find the right JSON library
 ///NOTE: Not sure if protected is the right visibility for everything
-//  protected def routes: Route = resourcePrefix(list ~ create ~ read ~ update ~ deleteResource)
+//  protected def routes: Route = resourcePrefix(list ~ create ~ retrieve ~ update ~ deleteResource)
 //  protected def resourcePrefix(paths: Route): Route = pathPrefix(name)(paths)
 //FIXME: Find a way to make it trait
-abstract class Resource[E <: Entity: Manifest] extends Directives with Json4sSupport {
+abstract class Resource[E <: Entity : Manifest] extends Json4sSupport {
 
-  protected val name:    String
+  //TODO: Move it JSON support
+  implicit val serialization = jackson.Serialization
+  implicit val formats = DefaultFormats
+
+  protected val name: String
   protected val service: RestService[E]
 
-  implicit val serialization = jackson.Serialization
-  implicit val formats       = DefaultFormats
-
-  protected def routes: Route = pathPrefix(name)(list ~ create ~ read ~ update ~ deleteResource)
+  def routes: Route = pathPrefix(name)(list ~ create ~ retrieve ~ update ~ deleteResource)
 
   protected def list: Route = {
     pathEnd {
@@ -33,13 +35,13 @@ abstract class Resource[E <: Entity: Manifest] extends Directives with Json4sSup
     pathEnd {
       post {
         entity(as[E]) { newResource =>
-          complete(("customerId" -> service.create(newResource)))
+          complete(("resourceId" -> service.create(newResource)))
         }
       }
     }
   }
 
-  protected def read: Route = {
+  protected def retrieve: Route = {
     path(IntNumber) { resourceId =>
       get {
         complete(service.getById(resourceId))
@@ -51,8 +53,7 @@ abstract class Resource[E <: Entity: Manifest] extends Directives with Json4sSup
     path(IntNumber) { resourceId =>
       put {
         entity(as[E]) { updateResource =>
-          complete(("customerId" -> service.update(resourceId, updateResource)))
-
+          complete(("resourceId" -> service.update(resourceId, updateResource)))
         }
       }
     }
@@ -66,4 +67,16 @@ abstract class Resource[E <: Entity: Manifest] extends Directives with Json4sSup
       }
     }
   }
+}
+
+trait RestService[E <: Entity] {
+  def getAll: Seq[E]
+
+  def getById(id: Int): E
+
+  def create(entity: E): Int
+
+  def update(id: Int, entity: E): Int
+
+  def delete(id: Int): Boolean
 }
